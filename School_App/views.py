@@ -1,6 +1,5 @@
 from django.shortcuts import render
 from django.core.mail import send_mail
-
 from School_App.models import User,UserType
 
 # Create your views here.
@@ -38,7 +37,16 @@ def signup(request):
 
 def login(request):
     if request.method == "POST":
-        pass
+        email = request.POST["mail_id"]
+        password = request.POST["pass"]
+        return render(request,"index.html")
     else:
         return render(request,"login.html")
         
+
+
+def index(request):
+    if request.method == "POST":
+        return render(request="index.html")
+    else:
+        return render(request="login.html")
