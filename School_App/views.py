@@ -11,21 +11,28 @@ def signup(request):
         mname = request.POST['mname']
         lname = request.POST['lname']
         number = request.POST['number']
-        mail = request.POST['email']
+        mail = request.POST['mail']
         standard = request.POST['standard']
-        file = request.FILE['file']
-
-        password = request.post['password']
-        cpassword = request.post['cpassword']
+        file = request.POST['file']
+        gender = request.POST['gender']
+        password = request.POST['pword']
+        cpassword = request.POST['cpword']
 
         try:
-            userobj = User.objects.get(email=mail)
+            userobj = User.objects.get(mail=mail)
             msg = "You are Already register with this email id"
             context = {'msg':msg}
             return render(request,"login.html",context)
-        except:        
-            if(password == cpassword):
-                pass
+        except: 
+            if fname=="" or lname=="" or number =="" or mail=="" or standard =="" or gender == "" or password=="" or cpassword == "": 
+                msg="Please enter all details!"
+                context = {'msg':msg}
+                return render(request,'signup.html',context)
+            elif(password == cpassword):
+                return render(request, "login.html")
+            else:
+                msg="password & confirm password does not match"
+                return render(request,'signup.html')
     else:
         return render(request,"signup.html")
 

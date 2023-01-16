@@ -22,6 +22,7 @@
   type="text/javascript"
   src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.js"
 ></script>
+
 </head>
 <body>
 
@@ -82,7 +83,7 @@
                   <div class="d-flex flex-row align-items-center mb-4">
                     <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
                     <div class="form-outline flex-fill mb-0">
-                      <input type="email" id="form3Example3c" name="email" class="form-control" />
+                      <input type="email" id="form3Example3c" name="mail" class="form-control" />
                       <label class="form-label" for="form3Example3c">Your Email</label>
                     </div>
                   </div>
@@ -105,24 +106,21 @@
                     </div>
                   </div>
 
-                  {% comment %} 
                   <div class="d-flex flex-row align-items-center mb-4">
-                    <i class="fa-solid fa-map-pin"></i>
+                    <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
                     <div class="form-outline flex-fill mb-0">
-                      <input type="" id="form3Example3c" class="form-control" />
-                      <label for ="Gender"> Select Gender</label>
-                      <option value="volvo">Male</option>
-                      <option value="saab">Female</option>
+                      <input type="text" id="form3Example4c" name="gender" class="form-control" />
+                      <label class="form-label" for="form3Example4c">Gender</label>
                     </div>
                   </div>
-                    {% endcomment %}
+
 
                   
 
                   <div class="d-flex flex-row align-items-center mb-4">
                     <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
                     <div class="form-outline flex-fill mb-0">
-                      <input type="password" id="form3Example4c" class="form-control" />
+                      <input type="password" id="form3Example4c" name="pword" class="form-control" />
                       <label class="form-label" for="form3Example4c">Password</label>
                     </div>
                   </div>
@@ -130,7 +128,7 @@
                   <div class="d-flex flex-row align-items-center mb-4">
                     <i class="fas fa-key fa-lg me-3 fa-fw"></i>
                     <div class="form-outline flex-fill mb-0">
-                      <input type="password" id="form3Example4cd" class="form-control" />
+                      <input type="password" id="form3Example4cd" name="cpword" class="form-control" />
                       <label class="form-label" for="form3Example4cd">Repeat your password</label>
                     </div>
                   </div>

@@ -32,7 +32,7 @@ class User(models.Model):
 	middle_name = models.CharField(max_length=20,null=True, blank=True)
 	last_name = models.CharField(max_length=20)
 	email = models.EmailField()
-	roll_no = models.BigIntegerField()
+	roll_no = models.BigIntegerField(null=True, blank=True)
 	address = models.CharField(max_length=300, null=True, blank=True)
 	mobile_no = models.BigIntegerField()
 	dob = models.DateField(null=True, blank=True)
