@@ -1,8 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import render , redirect
 from django.core.mail import send_mail
 from School_App.models import User,UserType
 
 # Create your views here.
+
+def index(request):
+    return render(request,"index.html")
 
 def signup(request):
     if request.method == "POST":
@@ -37,16 +40,37 @@ def signup(request):
 
 def login(request):
     if request.method == "POST":
-        email = request.POST["mail_id"]
-        password = request.POST["pass"]
-        return render(request,"index.html")
+        email = request.POST["email"]
+        password = request.POST["password"]
+
+        try:
+            user = User.objects.get(email=email)
+           
+            if (password == user.password):
+                # session create
+                request.session['email'] = email
+                request.session['name'] = user.first_name + " " + user.last_name
+        
+                return redirect("index")
+            else:
+                msg="Your password does not match"
+                context = {'msg':msg}
+                print("else block==")
+
+                return render(request,"login.html",context)
+        except:
+            print("except block==")
+
+            msg = "You are not register with us , first do signup."
+            context = {'msg':msg}
+            return render(request,"signup.html",context)
+
+        # return render(request,"index.html")
     else:
         return render(request,"login.html")
         
 
-
-def index(request):
-    if request.method == "POST":
-        return render(request="index.html")
-    else:
-        return render(request="login.html")
+def logout(request):
+    del request.session['email']
+    del request.session['name']
+    return redirect("login")
