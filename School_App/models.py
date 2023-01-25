@@ -47,8 +47,27 @@ class User(models.Model):
 		return self.first_name
 
 class Assignment(models.Model):
-	usertype = models.ForeignKey(UserType,on_delete=models.CASCADE)
-	assignment_file = models.FileField()
+	user = models.ForeignKey(User,on_delete=models.CASCADE)
+	assignment_file = models.FileField(upload_to="assignment/",default="default.png")
 	subject_name = models.CharField(max_length=30)
+
 	def __str__(self):
-		return self
+		return self.subject_name
+
+class Result(models.Model):
+	user = models.ForeignKey(User,on_delete=models.CASCADE)
+	total = models.BigIntegerField()
+	percentage = models.BigIntegerField()
+
+	def __str__(self):
+		return self.user
+
+class Leave(models.Model):
+	user = models.ForeignKey(User,on_delete=models.CASCADE)
+	reason = models.CharField(max_length=300)
+	start_date = models.DateField()
+	end_date = models.DateField()
+	status = models.CharField(max_length=20)
+
+	def __str__(self):
+		return self.reason + " | " + self.user.first_name + " " +self.user.last_name 
