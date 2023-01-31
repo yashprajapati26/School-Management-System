@@ -2,7 +2,8 @@ from itertools import count
 from django.shortcuts import render , redirect
 from django.core.mail import send_mail
 from School_App.models import *
-
+from MySchool_Project.settings import *
+import random
 # Create your views here.                                                           
 
 def index(request):
@@ -242,7 +243,27 @@ def subject(request):
     return render(request,"subject.html")
 
 def forgot_password(request):
-    return render(request,"forgot_password.html")
+    if request.method == "POST":
+        email = request.POST['email']
+        try:
+            user_object = User.objects.get(email=email)
+            gen_otp = random.randint(1000,9999)
+            msg = "Your Otp is "+ gen_otp +" for forget password"
+            subject = 'forgot password of school management'
+            send_mail(
+                subject,
+                msg,
+                EMAIL_HOST_USER,
+                [email,],
+            )
+            return render(request, 'otp.html')
+
+
+        except:
+            msg = "Your email is not registerd"
+            return render(request,"forgot_pqassword.html")
+    else:
+        return render(request,"forgot_password.html")
 
 def otp(request):
     return render(request,"otp.html")
