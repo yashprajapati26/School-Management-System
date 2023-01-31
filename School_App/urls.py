@@ -18,8 +18,6 @@ urlpatterns = [
     path('delete_assignment/<int:pk>/',views.delete_assignment,name="delete_assignment"),
     path('update_assignment/<int:pk>/',views.update_assignment,name="update_assignment"),
    
-
-
     path('profile/',views.profile,name="profile"),
     
     path('subject/',views.subject,name="subject"),
@@ -28,6 +26,10 @@ urlpatterns = [
     path('update_leave/<int:pk>/',views.update_leave,name="update_leave"),
 
     path('virtual-reality/',views.virtual_reality,name="virtual-reality"),
+   
+    path('otp/',views.otp,name="otp"),
+    path('forgot_password/',views.forgot_password,name="forgot_password"),
+    path('change_password/',views.change_password,name="change_password"),
 
     
 

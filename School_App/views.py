@@ -207,14 +207,13 @@ def delete_leave(request,pk):
 
 
 def update_leave(request,pk):
-    if request == "POST":
+    if request.method == "POST":
         leave = Leave.objects.get(pk=pk)
 
         reason = request.POST['reason']
         start_date = request.POST['start']
         end_date = request.POST['end']
-       
-    elif request == 'POST':
+
         leave.reason = reason
         leave.start_date = start_date
         leave.end_date = end_date
@@ -241,3 +240,12 @@ def table(request):
 
 def subject(request):
     return render(request,"subject.html")
+
+def forgot_password(request):
+    return render(request,"forgot_password.html")
+
+def otp(request):
+    return render(request,"otp.html")
+
+def change_password(request):
+    return render(request,"change_password.html")
